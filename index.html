@@ -9,7 +9,7 @@
   </head>
   
   <body>
-  
+
     <h2>What's your personality?</h2>
     
     <div ng-controller="PersonalityPointsController as personalityPoints">
@@ -17,13 +17,14 @@
       <span>{{personalityPoints.remaining()}} points remaining:</span>
       
       <ul class="unstyled">
-        <li ng-repeat="attribute in personalityPoints.attributes">
+        <li ng-repeat="attribute in personalityPoints.attributes track by $index">
           <label class="checkbox">
-            <span>{{attribute.text}}</span>
-            <button ng-click="personalityPoints.changePoints( '{{attribute.text}}', 1 )">+</button>
+            <button ng-click="personalityPoints.changePoints($index, 1)"
+            		ng-disabled="personalityPoints.remaining() <= 0">+</button>
             <span>{{attribute.points}}</span>
-            <button ng-click="personalityPoints.changePoints( '{{attribute.text}}', -1 )">-</button>
-            
+            <button ng-click="personalityPoints.changePoints($index, -1)"
+            		ng-disabled="attribute.points <= 0">-</button>
+            <span>{{attribute.text}}</span>
           </label>
         </li>
       </ul>

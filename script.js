@@ -15,12 +15,8 @@ angular.module('personalityPoints', [])
       personalityPoints.attributeText = '';
     };
  	
- 	personalityPoints.changePoints = function(attrText, x) {
- 	debugger;
- 		angular.forEach(personalityPoints.attributes, function(attribute) {
- 			attribute.points += attrText == attribute.text ? x : 0 ;
- 		});
- 		
+ 	personalityPoints.changePoints = function(index, x) {
+ 		personalityPoints.attributes[index].points += x; 		
  	};
  	
     personalityPoints.remaining = function() {
